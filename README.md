@@ -7,7 +7,7 @@ Wikipedia defines Docker as:
 
 an open-source project that automates the deployment of software applications inside containers by providing an additional layer of abstraction and automation of OS-level virtualization on Linux.
 
-- Docker is a tool that allows developers, sys-admins etc. to easily deploy their applications in a sandbox (called containers) to run on the host operating system i.e. Linux. 
+- Docker is a tool that allows developers, sys-admins etc. to easily deploy their applications in a sandbox (called containers) to run on the host operating system i.e. Linux.
 - The key benefit of Docker is that it allows users to package an application with all of its dependencies into a standardized unit for software development.
 
 ### Packaging applications
@@ -100,27 +100,27 @@ $ docker run -p 9090:80 prakhar1989/static-site
 Nginx is running...
 ```
 
-Check the application as `http://52.89.218.0:9090/`. You will see a message like:
+Check the application as `http://IP-ADDRESS:9090/` (example: `http://52.89.218.0:9090/`). You will see a message like:
 ```
 Hello Docker!
 This is being served from a docker container running Nginx.
 ```
 
 ### Building and running a Docker image
-
+> ***GROUPLABEL*** below is your username (see examples below the commands)
 ```
 $ git clone https://github.com/kurianinc/docker-curriculum.git
 
 $ cd docker-curriculum/flask-app
 
-$ docker build -t GROUPLABEL/catnip . 
+$ docker build -t GROUPLABEL/catnip .
 # example: $ docker build -t thomastk/catnip .
 
 $ docker run -p 9090:5000 GROUPLABEL/catnip
 # example: docker run -p 9090:5000 thomastk/catnip
 ```
 
-The app running in the container can be accessed as `http://52.89.218.0:9090/`
+The app running in the container can be accessed as `http://IP-ADDRESS:9090/` (example: `http://52.89.218.0:9090/`)
 
 ### Push image to Docker Hub
 
@@ -131,7 +131,7 @@ Login to Docker Hub using your account. A sample login session below:
 $ docker login
 Login with your Docker ID to push and pull images from Docker Hub. If you don't have a Docker ID, head over to https://hub.docker.com to create one.
 Username: thomastk
-Password: 
+Password:
 Login Succeeded
 ```
 
@@ -139,18 +139,18 @@ Push image to Docker Hub, a sample session below:
 ```
 $ docker push thomastk/catnip
 The push refers to repository [docker.io/thomastk/catnip]
-118f7100ddfc: Pushed 
-e377d4e34361: Pushed 
-1f50a9b9b2c7: Pushed 
-55fe2eed468c: Layer already exists 
-0e4f7fa7eb06: Layer already exists 
-ac0e7b8ba9e8: Layer already exists 
-b57c982f5768: Layer already exists 
-7ad7ab2d3895: Layer already exists 
-23044129c2ac: Layer already exists 
-8b229ec78121: Layer already exists 
-3b65755e1220: Layer already exists 
-2c833f307fd8: Layer already exists 
+118f7100ddfc: Pushed
+e377d4e34361: Pushed
+1f50a9b9b2c7: Pushed
+55fe2eed468c: Layer already exists
+0e4f7fa7eb06: Layer already exists
+ac0e7b8ba9e8: Layer already exists
+b57c982f5768: Layer already exists
+7ad7ab2d3895: Layer already exists
+23044129c2ac: Layer already exists
+8b229ec78121: Layer already exists
+3b65755e1220: Layer already exists
+2c833f307fd8: Layer already exists
 latest: digest: sha256:73da305e4f34e322c2b0961a1f24bd0aded629448a70cf936e1764545efbfe3b size: 2840
 ```
 
