@@ -59,4 +59,49 @@ $ ps -ef |grep -i docker
 - `Docker Client` - A tool that allows the user to interact with the daemon. `docker` is a CLI client.
 
 
+Run a container from an image publicly available and try to access it locally.
+
+```
+$ docker run -d -P --name static-site prakhar1989/static-site
+Unable to find image 'prakhar1989/static-site:latest' locally
+latest: Pulling from prakhar1989/static-site
+
+$ docker ps
+CONTAINER ID        IMAGE                     COMMAND             CREATED             STATUS              PORTS                                           NAMES
+61183d5d3bce        prakhar1989/static-site   "./wrapper.sh"      45 seconds ago      Up 44 seconds       0.0.0.0:32769->80/tcp, 0.0.0.0:32768->443/tcp   static-site
+
+$ docker port static-site
+443/tcp -> 0.0.0.0:32768
+80/tcp -> 0.0.0.0:32769
+
+$ curl -I http://localhost:32769
+HTTP/1.1 200 OK
+Server: nginx/1.9.9
+Date: Sat, 26 May 2018 04:09:39 GMT
+Content-Type: text/html
+Content-Length: 2041
+Last-Modified: Sun, 03 Jan 2016 04:32:16 GMT
+Connection: keep-alive
+ETag: "5688a450-7f9"
+Accept-Ranges: bytes
+```
+
+Map a container port to the host externally accessible from Internet. Port `9090` is configured in AWS to access from the Internet.
+```
+$ docker ps
+CONTAINER ID        IMAGE                     COMMAND             CREATED             STATUS              PORTS                                           NAMES
+61183d5d3bce        prakhar1989/static-site   "./wrapper.sh"      6 minutes ago       Up 6 minutes        0.0.0.0:32769->80/tcp, 0.0.0.0:32768->443/tcp   static-site
+
+$ docker stop 61183d5d3bce
+61183d5d3bce
+
+$ docker run -p 9090:80 prakhar1989/static-site
+Nginx is running...
+```
+
+Check the application as `http://52.89.218.0:9090/`. You will see a message like:
+```
+Hello Docker!
+This is being served from a docker container running Nginx.
+```
 
