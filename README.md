@@ -107,7 +107,7 @@ This is being served from a docker container running Nginx.
 ```
 
 ### Building and running a Docker image
-> ***GROUPLABEL*** below is your username (see examples below the commands)
+> ***GROUPLABEL*** below is your Docker username (see examples below the commands)
 ```
 $ git clone https://github.com/kurianinc/docker-curriculum.git
 
