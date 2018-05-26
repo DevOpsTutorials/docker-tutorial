@@ -156,5 +156,5 @@ latest: digest: sha256:73da305e4f34e322c2b0961a1f24bd0aded629448a70cf936e1764545
 
 This image is now available anywhere in the Internet to download and run as container as in the following example:
 ```
-$ docker run -p 9999:5000 thomastk/catnip
+$ docker run -p 9090:5000 thomastk/catnip
 ```
