@@ -58,6 +58,7 @@ $ ps -ef |grep -i docker
 ```
 - `Docker Client` - A tool that allows the user to interact with the daemon. `docker` is a CLI client.
 
+### Running and accessing container
 
 Run a container from an image publicly available and try to access it locally.
 
@@ -105,3 +106,55 @@ Hello Docker!
 This is being served from a docker container running Nginx.
 ```
 
+### Building and running a Docker image
+
+```
+$ git clone https://github.com/kurianinc/docker-curriculum.git
+
+$ cd docker-curriculum/flask-app
+
+$ docker build -t GROUPLABEL/catnip . 
+# example: $ docker build -t thomastk/catnip .
+
+$ docker run -p 9090:5000 GROUPLABEL/catnip
+# example: docker run -p 9090:5000 thomastk/catnip
+```
+
+The app running in the container can be accessed as `http://52.89.218.0:9090/`
+
+### Push image to Docker Hub
+
+If you don't have an account on Docker Hub, create one at https://hub.docker.com/
+
+Login to Docker Hub using your account. A sample login session below:
+```
+$ docker login
+Login with your Docker ID to push and pull images from Docker Hub. If you don't have a Docker ID, head over to https://hub.docker.com to create one.
+Username: thomastk
+Password: 
+Login Succeeded
+```
+
+Push image to Docker Hub, a sample session below:
+```
+$ docker push thomastk/catnip
+The push refers to repository [docker.io/thomastk/catnip]
+118f7100ddfc: Pushed 
+e377d4e34361: Pushed 
+1f50a9b9b2c7: Pushed 
+55fe2eed468c: Layer already exists 
+0e4f7fa7eb06: Layer already exists 
+ac0e7b8ba9e8: Layer already exists 
+b57c982f5768: Layer already exists 
+7ad7ab2d3895: Layer already exists 
+23044129c2ac: Layer already exists 
+8b229ec78121: Layer already exists 
+3b65755e1220: Layer already exists 
+2c833f307fd8: Layer already exists 
+latest: digest: sha256:73da305e4f34e322c2b0961a1f24bd0aded629448a70cf936e1764545efbfe3b size: 2840
+```
+
+This image is now available anywhere in the Internet to download and run as container as in the following example:
+```
+$ docker run -p 9999:5000 thomastk/catnip
+```
